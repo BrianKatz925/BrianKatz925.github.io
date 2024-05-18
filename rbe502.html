@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Brian Katz - Engineering Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="work experience.html">Work Experience</a></li>
+							<li><a href="university projects.html">University Projects</a></li>
+							<li><a href="personal projects.html">Personal Projects</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" style="padding-bottom:25px;">
+						<div class="row">
+							<div class="column">
+							<h1 style="margin-bottom:0px; margin-top:25px;">RBE502: Robot Controls</h1>
+							<p> </p>
+							</div>
+						</div>
+					</div>
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">
+							<h2 style="margin-left:40px;margin-bottom:20px;">Summary</h2>
+							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>
+								In Robot Controls, the main objective of the final project was to develop a resilient control scheme to enable a quadrotor to track desired trajectories while undergoing external disturbances.
+								This project involved trajectory generation given a list of input coordinates, which were fed into a custom sliding mode control scheme.
+								After generating a symbolic representation of the control inputs into a quadrotor given the dynamics, we developed a simulation using Python and ROS to publish ROS messages to the quadrotor in Gazebo.
+								Through experimentation, we tuned various parameters of the controller to achieve a smoother motion.
+							</br>
+							</br>
+								To learn more about our project in detail, view our final report <a href="https://drive.google.com/file/d/1uB5aqJsVxI-r5H0FmCrMOHetcUDy92Am/view?usp=sharing"target="_blank" style="color:blue">here.</a>
+							
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/quadrotor motion.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+							</div>	
+						</div>
+					</div>
+					
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<h2 style="margin-left:40px;margin-bottom:20px;">Trajectory Generation</h2>
+
+							<p style= margin-left:80px;margin-right:80px;>
+								We first broke down this large problem into a series of sequential steps to determine our control model.
+								The first step was to generate trajectories given a series of desired quadrotor position, velocity, and acceleration coordinates.
+								We created a class which would handle the generation of quintic trajectory polynomial coefficients and the corresponding fifth order equations.
+								First, we solved a system of linear equations as shown below to receive the quintic coefficients, where q,v, and a are the position, velocity, and acceleration and the M matrix is the matrix formation of quintic polynomial equations. 
+								As our desired trajectory variables were the final position of the robot in x,y, and z, we called solved this equation three times to get three sets of six coefficients. 
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/quintic traj.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main"style="padding-bottom:0px">
+						<div class="inner">
+							<p style= margin-left:80px;margin-right:80px;>
+							Next, we fed the resulting coefficients into a series of fifth order equations to give us the symbolic position, velocity, and acceleration trajectories the robot would take throughout its movement.
+							We then plotted these symbolic functions using Sympy functions such as lambdify and vectorize, which translated our symbolic equations to a plottable equation. 
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/quintic equations.PNG" alt="" style="text-align:center; height:100px; width:auto;">
+								<img src="images/desired traj data.PNG" alt="" style="text-align:center; height:500px; width:auto;">
+							
+							</div>	
+						</div>
+					</div>
+
+					<div>	
+						<h2 style="margin-left:40px;margin-bottom:20px;">Slide Mode Control Derivation</h2>
+
+						<p style= margin-left:80px;margin-right:80px;>
+							The next step was to derive the sliding mode control laws for this system. To do so, we followed these steps:
+						</br>
+						</br>
+						1) Define state variables
+						</br>
+						2) Calculate desired trajectories
+						</br>
+						3) Define the errors for each state variable
+						</br>
+						4) Put everything in control affine form
+						</br>
+						5) Define the surface equations for each of the control variables
+						</br>
+						6) Form the control input vector
+
+						</br>
+						</br>	
+
+						The state variables were chosen based on our provided dynamics equations, which showed the variables x,y,z, theta, phi, and psi. 
+						Since the dynamics were in the form of accelerations, our state variables had to include both position and velocity for the previously named variables.
+						</p>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/dynamics and state variables.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main"style="padding-bottom:0px">
+						<div class="inner">
+							<p style= margin-left:80px;margin-right:80px;>
+								Then, using the previously stated methodology, we calculated the symbolic trajectories for each of our state variables.
+								</br>
+								</br>
+								We then defined errors for each state variable, where error is defined as the current state variable minus the desired state variable.
+								For the angular state variable errors, we wrapped the roll, pitch, and yaw angles between -pi and pi to interface with the quadrotor.
+								</br>
+								</br>
+								Next, we put the dynamics equations into control affine form as shown below by separating the dynamics equations into f(x) terms and g(x) terms which are multiplied by u, the set of control inputs.
+								</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/control affine.PNG" alt="" style="text-align:center; height:50px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main"style="padding-bottom:0px">
+						<div class="inner">
+							<p style= margin-left:80px;margin-right:80px;>
+								Then, we defined the surface equations which are used for the "sliding" portion of the sliding mode control. 
+								In the equations below, our goal is to solve for the control inputs given a sliding surface, s, and a set of chosen gains, k and lambda.
+								The gains in this system are crucial towards the stability of the system.
+								Lambda defines the location and slope of the sliding surface, acting similarly to a proportional constant either causing oscillation or steady-state error if not tuned properly.
+								K variables determine how quickly the control reaches the sliding surface and fulfilling the sliding condition.
+								This process was repeated for each of the actuators, as a quadrotor is an underactuated system. 
+
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/sliding mode control deriv.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main"style="padding-bottom:0px">
+						<div class="inner">
+							<p style= margin-left:80px;margin-right:80px;>
+								Lastly, we solved for the control inputs using the previous sliding mode equations and surface condition.
+								The Ur term in this equation is a robust control term, which will become our control law and satisfy the sliding condition.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/control inputs.PNG" alt="" style="text-align:center; height:50px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main"style="padding-bottom:0px">
+						<div class="inner">
+							<p style= margin-left:80px;margin-right:80px;>
+								We then substitute the Ur term into our sliding mode condition and add a saturation function to reduce chattering.
+								The phi term in the saturation function defines our boundary layer, along with reducing frequent sign changes, producing smooth control.
+								This results in Ur to be the following. 
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/Ur term.PNG" alt="" style="text-align:center; height:50px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

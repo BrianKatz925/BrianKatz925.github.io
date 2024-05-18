@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Brian Katz - Engineering Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="work experience.html">Work Experience</a></li>
+							<li><a href="university projects.html">University Projects</a></li>
+							<li><a href="personal projects.html">Personal Projects</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" style="padding-bottom:25px;">
+						<div class="row">
+							<div class="column">
+							<h1 style="margin-bottom:0px; margin-top:25px;">RBE3002: Navigation</h1>
+							<p> </p>
+							</div>
+						</div>
+					</div>
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">
+							<h2 style="margin-left:40px;margin-bottom:20px;">Summary</h2>
+							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>
+								In the final lab of RBE3002, we explored the integration of Simultaneous Localization and Mapping (SLAM) using a simulated TurtleBot in ROS and Gazebo to navigate an unknown maze.
+								To make this challenge more difficult, simulated noise was included using a provided ROS package. 
+								Our robot was able to solve a randomized map in 138 seconds and return to its starting position, the second fastest time in the class.
+								To solve the problem of SLAM, we split the final challenge into 3 phases:
+							</br>
+							</br>
+								1) Map the entire map using the GMapping package to find and cover all unexplored frontiers
+								2) Navigate back to the robot's starting location and save the final map
+								3) Load the previously saved map and navigate to a random position using the AMCL localization library
+							</br>
+							</br>
+								To learn more about our project in detail along with a discussion on best practices for implementing a SLAM navigation stack, view our final report <a href="https://drive.google.com/file/d/13fQqtvEDSqDC3fAdU00V52aeSoaFe5kb/view?usp=sharing"target="_blank" style="color:blue">here.</a> 
+						</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<video src="images/RBE 3002 30s Demo.MP4" style="text-align:center; height:400px; width:auto;" controls></video>
+							</div>	
+						</div>
+					</div>
+					
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<h2 style="margin-left:40px;margin-bottom:20px;">Node Organization</h2>
+
+							<p style= margin-left:80px;margin-right:80px;>
+								For phase one, where we navigated the map, we needed to include several off-the-shelf nodes along with nodes we created in previous labs.
+								As shown below in the node diagram, our highest level node was the middle_manager_manatee node, which acted as our core.
+								This node took in the most information from the map_processor, to understand map completion for phase switching.
+								The lowest level nodes, called alligator_navigator and path_planner_platypus, provided the navigation commands for the TurtleBot.
+								The map_processor node  governed the functions behind the dynamic and static map generation.
+								Octopus_odom provided a real-time accurate odometry solution within a noisy map using a frame transform.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/3002 phase 1.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">	
+							<p style= margin-left:80px;margin-right:80px;>
+								As phase two was navigating back to the start node and saving the map, it retained the same node diagram. 
+								In phase three, we no longer needed to process a map, and the map_processor node was eliminated. 
+								The middle_manager_manatee was now fed a goal from RViz (an interactive map viewer) and published a set of coordinates to the alligator_navigator.
+								In this phase, we included amcl, the built-in localization node, and were feeding the pose and surrounding scan data into octopus_odom.
+								This formed the Montecarlo Localization and verified the robot's position on the scanned map.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/3002 phase 2.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">	
+							<h2 style="margin-left:40px;margin-bottom:20px;">Node Definitions</h2>
+							<p style= margin-left:80px;margin-right:80px;>
+								The alligator_navigator node functioned as a locomotion node, taking in individual points from the core node and navigating to them.
+								To create a smooth form of driving, we created the go_to_two function, which used simultaneous proportional controllers on the robot's position and rotation error, allowing the robot to curve into paths..
+								This go_to_two function was called during a service proxy to path_planner_platypus, and would pop a coordinate from a list.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/3002 alligator_navigator.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">	
+							<p style= margin-left:80px;margin-right:80px;>
+								Path_planner_platypus used algorithms such as A* to calculate optimal paths between a given start and end position.
+								After receiving the path, we called the smooth_path function, which brought corners closer towards a local centroid by an experimental smoothing constant, alpha.
+								This node took in current map data, calculating our C-Space and padded any walls using the radius of the robot (to avoid collision) and provided this data as a service call to alligator_navigator.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/3002 path_planner_platypus.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">	
+							<p style= margin-left:80px;margin-right:80px;>
+								Map_processor was the node that converted our raw map data into frontier data that can be used by other nodes. 
+								Using the find_frontiers function, we applied edge detection to find all unknown spaces neighboring already explored free space cells.
+								To determine which frontier to explore, we created a heuristic cost, by calculating the distance to each frontier and the size of the frontier list to prioritize frontiers that are closer and larger in size.
+								Once we found a frontier, we found the median point (presented as the center of the frontier in the map) and published a message to our path planner.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/3002 map_processor.PNG" alt="" style="text-align:center; height:450px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">	
+							<p style= margin-left:80px;margin-right:80px;>
+								Octopus_odom, as mentioned previously, took in the robot's current position from the odometry and tf topics, and performed a transform beteween the map and the robot's footprint.
+								This provided a more accurate odometry under noisy conditions, as the robot's position within the map would not change, bypassing the noise.
+								In the third phase, when we incorporated AMCL, we bypassed this transform and published raw odometry data as this transform would cause the robot to move around erroneously. 
+							</br>
+							</br>
+								Lastly, middle_manager_manatee set the integer phase of the program, starting and ending launch files. 
+								We started with phase zero, which set up all subscriber callbacks and then launched the phase_one launch file.
+								This started up our map_processor and GMapping nodes to begin locomotion and frontier detection. 
+								Map_processor published the handle_phase topic, which the middle_manager_manatee node was subscribed.
+								Once the map was complete, the map_processor published an integer, and the node published the initial location of the robot and saved the map on completion.
+								Lastly, the node closed all files and relaunched the map using the previously saved map, AMCL, and a custom RViz configuration which allowed us to place points on the map to navigate. 
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/3002 middle_manager_manatee.PNG" alt="" style="text-align:center; height:550px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+				
+
+				
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

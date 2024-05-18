@@ -1,0 +1,362 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Brian Katz - Engineering Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="work experience.html">Work Experience</a></li>
+							<li><a href="university projects.html">University Projects</a></li>
+							<li><a href="personal projects.html">Personal Projects</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" style="padding-bottom:25px;">
+						<div class="row">
+							<div class="column">
+							<h1 style="margin-bottom:0px; margin-top:25px;">C.L.A.R.A. MQP</h1>
+							<p> </p>
+							</div>
+						</div>
+					</div>
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">
+							<h2 style="margin-left:40px;margin-bottom:20px;">Summary</h2>
+							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>My Major Qualifying Project, called C.L.A.R.A., where, as part of a team of two, I helped create a modular continuum robot to traverse a series of pipe networks for internal pipe inspection. 
+							The robot was developed from scratch, with design inspirations from the Salamanderbot (more information in work experience).
+							</br>
+							</br>
+							Our goal in creating C.L.A.R.A. was to create a robot that was adaptable, being able to overcome various diameters, bends, pipe diameter changes, and vertical pipes.
+							
+							To learn more about our project in detail, view our final report <a href="https://drive.google.com/file/d/1cU0n1pM7xxZiDfhUG8ciQLA-yvIDMnif/view?usp=sharing"target="_blank" style="color:blue">here.</a> and our presentation <a href="https://drive.google.com/file/d/1CqKvsnCRzgVcnhFtlx8sqLZQdoOWuHAO/view?usp=sharing"target="_blank" style="color:blue">here.</a>
+							</br></p>
+
+							<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+								<div class="inner">
+									<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+										<img src="images/Cover Photo - Contrasted.jpg" alt="" style="text-align:center; height:300px; width:auto;">
+										<video src="images/incline - 1.5x speed edited.mp4" style="text-align:center; height:400px; width:auto;" controls></video>
+										<video src="images/vertical pipe bend - 2x speed.mp4" style="text-align:center; height:400px; width:auto;" controls></video>
+										<video src="images/steering - 2x speed.mp4" style="text-align:center; height:400px; width:auto;" controls></video>
+							
+									</div>	
+								</div>
+							</div>
+				
+							<h2 style="margin-left:40px;margin-bottom:20px;">Mechanical Design</h2>
+
+							<p style= margin-left:80px;margin-right:80px;>
+								We created the deformable main body of the robot using an origami pattern called Yoshimura. 
+								The Yoshimura pattern (pictured left) features pure axial compression, maintaining high torsional strength with a series of horizontal folds which form bellows.
+								We designed our Yoshimura module (pictured center) by connecting three of these patterns, which gives the module three bending degrees of freedom and one axial degree of freedom.
+								To control the degrees of freedom of the robot, we used a series of three microfilament cables guided through each of the three corners of the module and actuated by motors.
+							</p>
+
+							<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+							<div class="inner">
+								<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+									<img src="images/Yoshimura pattern.PNG" alt="" style="text-align:center; height:250px; width:auto;">
+									<img src="images/yoshimura module.PNG" alt="" style="text-align:center; height:250px; width:auto;">
+									<img src="images/clara motor arrangement.PNG" alt="" style="text-align:center; height:250px; width:auto;">
+								</div>	
+							</div>
+							</div>
+
+							<p style= margin-left:80px;margin-right:80px;>
+								To control the diameter of the robot to fit into multiple size pipes, our robot featured two mechanisms: an active suspension mechanism and a passive suspension mechanism.
+								The active suspension mechanism (pictured below) consisted of three slider-crank linkages with a central slider riding on a powered lead screw. 
+								This mechanism allowed the outermost points of the slider cranks to move inwards toward the center of the robot, changing its effective diameter.
+							</p>
+								
+							<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+								<div class="inner">
+									<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+										<img src="images/active end.PNG" alt="" style="text-align:center; height:250px; width:auto;">
+									</div>	
+								</div>
+							</div>
+
+							<p style= margin-left:80px;margin-right:80px;>
+								The passive side was very similar, replacing the powered lead screw with a compression spring, and the slider links with compliant NinjaFlex TPU for extra deformation in pipes. 
+								</p>
+								
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/passive end.PNG" alt="" style="text-align:center; height:250px; width:auto;">
+										</div>	
+									</div>
+								</div>
+
+							<p style= margin-left:80px;margin-right:80px;>
+								To drive the robot on the active side, we developed transmission modules, mounted on each link, which featured an N20 motor, a 1:1 bevel gear transmission and compliant wheels.
+								The compliant wheels were created with a combination of TPU 3D printing and a silicone overmold, using DragonSkin 10 NV. 
+								On the passive side, the motors and gearbox were removed. 
+							</p>
+
+							<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+								<div class="inner">
+									<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+										<img src="images/transmission module.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+										<img src="images/compliant wheel molding.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+									</div>	
+								</div>
+							</div>
+
+							<p style= margin-left:80px;margin-right:80px;>
+								The final robot, with all of the aforementioned components, is shown below. 
+							</p>
+
+							<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+								<div class="inner">
+									<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+										<img src="images/final clara robot.PNG" alt="" style="text-align:center; height:250px; width:auto;">
+										<img src="images/clara real.PNG" alt="" style="text-align:center; height:250px; width:auto;">
+										
+										</div>	
+								</div>
+							</div>
+
+							<h2 style="margin-left:40px;margin-bottom:20px;">Circuit Design</h2>
+
+							<p style= margin-left:80px;margin-right:80px;>
+								We developed two different types of PCBs for this project. The first is a smart motor driver, soldered to each N20 motor on the robot and the second is a central mainboard to control each of the motor drivers.
+
+								The smart motor driver took inspiration from a publicly available PCB motor driver, called the SAMI board, which featured a microcontroller, a singular encoder, motor driver, and JST connector for communication.
+								However, all components on the PCB were no longer manufactured, so we completely refactored the PCB to fit our constraints, while adding features.
+								Using Altium, we developed a PCB which implemented current sensing, Serial capability, quadrature encoders, and a second JST connector for daisy chaining capability in addition to the previous features.
+							
+								</br>
+								</br>
+								We went through several iterations in designing our smart motor driver. 
+								The first phase of our PCB was the replacement of components and addition of new features. 
+								We selected new motor drivers, current sensors, hall-effect quadrature encoders, and microcontrollers. 
+								In this phase, we learned how to effectively size sense resistors for the current sensor using the following calculations and set up our flashing architecture using a 16MHz crystal and 10kOhm pullup resistor. 
+								</p>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/Rsense calc.PNG" alt="" style="text-align:center; height:30px; width:auto;">
+											<img src="images/power rating calc.PNG" alt="" style="text-align:center; height:60px; width:auto;">
+										</div>
+									</div>
+								</div>
+
+								<p style= margin-left:80px;margin-right:80px;>
+								The PCB pictured below was the result of our learnings, and was sized at 29.46mm in length and 12.83mm in width. 
+								Unfortunately, we experienced troubles in flashing the microcontroller via SPI due to the placement of components and the length of traces. 
+								</p>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/phase1trace.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+											<img src="images/phase1trace.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+											</div>
+									</div>
+								</div>
+
+								<p style= margin-left:80px;margin-right:80px;>
+									In the second phase, we rearranged all the components to be closer together, and on the same side of the PCB, increasing its width by 2.7 mm.
+									Additionally, we placed bypass capacitors next to the pins of the microcontroller and added a ground plane on both sides to reduce noise as much as possible. 
+									To reduce the possibility of heat generation from current draw, we increased the trace width of all traces leading to the DC motor to 14 mil.
+									These adjustments fixed our flashing issues, and gave us an opportunity to test the entire robot for the first time.
+								</p>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/phase2trc.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+											<img src="images/phase2pcb.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+											</div>
+									</div>
+								</div>
+
+								<p style= margin-left:80px;margin-right:80px;>
+									In the third and final phase of this design, we found that operating the motors at 3.7V was only possible for short periods as they stalled overcoming the friction the robot expreienced inside a pipe.
+									We upgraded to a 7.4V battery, replacing many of the components to handle the increased voltage such as the motor driver and current sensor.
+									In this iteration, we also added capabilities to debug via Serial communication.
+								</p>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/phase3trc.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+											<img src="images/phase3pc.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+											<img src="images/real smart motor driver.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+											</div>
+									</div>
+								</div>
+							
+								<p style= margin-left:80px;margin-right:80px;>
+									Our mainboard was very simple, acting as a controller for each smart motor driver.
+									To act as our microcontroller, we selected a TinyPICO v2 as it used the ESP32 architecture which has fast processing speed, and required communication protocols such as I2C and WiFi.
+									We connected each of the smart motor drivers using 5-pin JST connectors, carrying battery voltage, logic voltage, ground, and the I2C data and clock lines. 
+									Each smart motor driver contained its own I2C address and was controlled individually.
+									To step down the battery voltage (7.4V) to logic level voltage (3.3V), we selected an off-the-shelf buck regulator due to their high efficiency. 
+
+									Our process in iterating the mainboard was in parallel to the smart motor drivers, and included many similar improvements such as ground planes, bypass capacitors, and properly sized current trace widths. 	
+								</p>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/mainboard trc.PNG" alt="" style="text-align:center; height:200px; width:auto;">
+											<img src="images/mainboard pcb.PNG" alt="" style="text-align:center; height:200px; width:auto;">
+											<img src="images/mainboard real.PNG" alt="" style="text-align:center; height:200px; width:auto;">
+											
+											</div>
+									</div>
+								</div>
+							
+								<h2 style="margin-left:40px;margin-bottom:20px;">Software and Control Architecture</h2>
+
+								<p style= margin-left:80px;margin-right:80px;>
+									The control structure of C.L.A.R.A. can be broken down into two components: the WiFi communication between our external computer and our mainboard and I2C communication between the mainboard and the smart motor drivers.
+								</p>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/control arch.PNG" alt="" style="text-align:center; height:200px; width:auto;">
+											</div>
+									</div>
+								</div>
+
+								<p style= margin-left:80px;margin-right:80px;>
+									To control our robot remotely, we used ESP-NOW, a Wi-Fi communication protocol to communicate bidirectionally between two ESP-32s. 
+									We also integrated a game controller to control the robot and translated each of the inputs into commands for the mainboard to interpret via Python script and Serial communication. 
+									We stored the incoming commands into a 43 bit character array, determined the button pressed through a series of logic statements, and sent it to the mainboard over WiFi for further interpretation.
+								</p>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/gamepad bits.PNG" alt="" style="text-align:center; height:50px; width:auto;">
+											</div>
+									</div>
+								</div>
+
+								<p style= margin-left:80px;margin-right:80px;>
+									The mainboard would then map each of the incoming commands to a character to be sent to the corresponding smart motor drivers.
+									A snippet of our data mapping is shown below. 
+									Automatically called functions, part of the ESP-NOW protocol, made the basis for our on-demand control and data accumulation.
+									Depending on the data received, different functions were called with stored addresses for each smart motor driver.
+
+								</p>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/command map.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+											</div>
+									</div>
+								</div>
+
+								
+								<p style= margin-left:80px;margin-right:80px;>
+									Since each motor could have the same functionality, the same code was uploaded to each smart motor driver PCB with the only difference being the I2C address.
+									Therefore, all communication functionality was left to the mainboard, while the smart motor drivers processed incoming commands.
+									</br>
+									</br>	
+									To keep track of encoder ticks, we utilized two Interrupt Service Routines to increment/decrement a counter when the encoders experience a change in reading. 
+									To keep the computing time in the ISR as low as possible, we used direct register calls to the encoder pins and appended the signals produced by each of the hall effect sensors together to form the following quadrature lookup table.
+								</p>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/quadrature lookup.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+											</div>
+									</div>
+								</div>
+
+								<p style= margin-left:80px;margin-right:80px;>
+									We employed P control for velocity to control our motors. 
+									We once again used the encoders to determine both our position and speed.
+									By taking the difference between the previous and current encoder positions (called countdiff below) and conversion from ticks to rpm, we could generate the motor speed.
+									We then applied a P controller by calculating the difference between our desired and current speed, adjusting the PWM duty cycle to the motors to change their speed.
+
+								</p>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/motor speed calc.PNG" alt="" style="text-align:center; height:50px; width:auto;">
+											</div>
+									</div>
+								</div>
+
+								<p style= margin-left:80px;margin-right:80px;>
+									To control position and apply inverse kinematics, we applied a set of equations that output a set of cable lengths given the robot curvature, bending direction, and arc length.
+									We created functionality to input the desired joint space values into the Serial Monitor and move the motors to their required positions with a PI controller on encoder counts. 
+									Below are some of the results to step inputs and sinusoidal functions, showing the capabilities of our system. 
+								</p>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/inverse kinematics.PNG" alt="" style="text-align:center; height:125px; width:auto;">
+										</div>
+									</div>
+								</div>
+
+								<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+									<div class="inner">
+										<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+											<img src="images/step response.PNG" alt="" style="text-align:center; height:250px; width:auto;">
+											<img src="images/sinusoidal traj.PNG" alt="" style="text-align:center; height:250px; width:auto;">
+										
+										</div>
+									</div>
+								</div>
+
+								<p style= margin-left:80px;margin-right:80px;>
+									Lastly, we implemented stall protection using the current sensors. This allowed us to extend our battery life and prevent the loss of any motors on the robot.
+									We also used this feature as a limit stop for our diameter, bringing the motors to contact the pipe without stalling.
+								</p>
+						</div>
+					</div>
+
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -44,15 +44,15 @@
 					<div id="main" style="padding-bottom:25px;">
 						<div class="row">
 							<div class="column">
-							<h1 style="margin-bottom:0px; margin-top:25px;">RBE3002: Navigation</h1>
+							<h1 style="margin-bottom:0px; margin-top:25px; margin-left:30px">RBE3002: Navigation</h1>
 							<p> </p>
 							</div>
 						</div>
 					</div>
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">
-							<h2 style="margin-left:40px;margin-bottom:20px;">Summary</h2>
-							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>
+							<h2 style="margin-bottom:20px;">Summary</h2>
+							<p style= margin-left:40px;margin-right:80px;margin-bottom:20px;>
 								In the final lab of RBE3002, we explored the integration of Simultaneous Localization and Mapping (SLAM) using a simulated TurtleBot in ROS and Gazebo to navigate an unknown maze.
 								To make this challenge more difficult, simulated noise was included using a provided ROS package. 
 								Our robot was able to solve a randomized map in 138 seconds and return to its starting position, the second fastest time in the class.
@@ -72,16 +72,16 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<video src="images/RBE 3002 30s Demo.MP4" style="text-align:center; height:400px; width:auto;" controls></video>
+								<video src="images/RBE 3002 30s Demo.MP4" style="text-align:center; height:450px; width:auto;" controls></video>
 							</div>	
 						</div>
 					</div>
 					
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">		
-							<h2 style="margin-left:40px;margin-bottom:20px;">Node Organization</h2>
+							<h2 style="margin-bottom:20px;">Node Organization</h2>
 
-							<p style= margin-left:80px;margin-right:80px;>
+							<p style= margin-left:40px;margin-right:80px;>
 								For phase one, where we navigated the map, we needed to include several off-the-shelf nodes along with nodes we created in previous labs.
 								As shown below in the node diagram, our highest level node was the middle_manager_manatee node, which acted as our core.
 								This node took in the most information from the map_processor, to understand map completion for phase switching.
@@ -95,14 +95,14 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 phase 1.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+								<img src="images/3002 phase 1.PNG" alt="" style="text-align:center; height:350px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">	
-							<p style= margin-left:80px;margin-right:80px;>
+							<p style= margin-left:40px;margin-right:80px;>
 								As phase two was navigating back to the start node and saving the map, it retained the same node diagram. 
 								In phase three, we no longer needed to process a map, and the map_processor node was eliminated. 
 								The middle_manager_manatee was now fed a goal from RViz (an interactive map viewer) and published a set of coordinates to the alligator_navigator.
@@ -115,15 +115,15 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 phase 2.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+								<img src="images/3002 phase 2.PNG" alt="" style="text-align:center; height:350px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">	
-							<h2 style="margin-left:40px;margin-bottom:20px;">Node Definitions</h2>
-							<p style= margin-left:80px;margin-right:80px;>
+							<h2 style="margin-bottom:20px;">Node Definitions</h2>
+							<p style= margin-left:40px;margin-right:80px;>
 								The alligator_navigator node functioned as a locomotion node, taking in individual points from the core node and navigating to them.
 								To create a smooth form of driving, we created the go_to_two function, which used simultaneous proportional controllers on the robot's position and rotation error, allowing the robot to curve into paths..
 								This go_to_two function was called during a service proxy to path_planner_platypus, and would pop a coordinate from a list.
@@ -134,14 +134,14 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 alligator_navigator.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+								<img src="images/3002 alligator_navigator.PNG" alt="" style="text-align:center; height:450px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">	
-							<p style= margin-left:80px;margin-right:80px;>
+							<p style= margin-left:40px;margin-right:80px;>
 								Path_planner_platypus used algorithms such as A* to calculate optimal paths between a given start and end position.
 								After receiving the path, we called the smooth_path function, which brought corners closer towards a local centroid by an experimental smoothing constant, alpha.
 								This node took in current map data, calculating our C-Space and padded any walls using the radius of the robot (to avoid collision) and provided this data as a service call to alligator_navigator.
@@ -152,14 +152,14 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 path_planner_platypus.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+								<img src="images/3002 path_planner_platypus.PNG" alt="" style="text-align:center; height:450px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">	
-							<p style= margin-left:80px;margin-right:80px;>
+							<p style= margin-left:40px;margin-right:80px;>
 								Map_processor was the node that converted our raw map data into frontier data that can be used by other nodes. 
 								Using the find_frontiers function, we applied edge detection to find all unknown spaces neighboring already explored free space cells.
 								To determine which frontier to explore, we created a heuristic cost, by calculating the distance to each frontier and the size of the frontier list to prioritize frontiers that are closer and larger in size.
@@ -171,14 +171,14 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 map_processor.PNG" alt="" style="text-align:center; height:450px; width:auto;">
+								<img src="images/3002 map_processor.PNG" alt="" style="text-align:center; height:500px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">	
-							<p style= margin-left:80px;margin-right:80px;>
+							<p style= margin-left:40px;margin-right:80px;>
 								Octopus_odom, as mentioned previously, took in the robot's current position from the odometry and tf topics, and performed a transform beteween the map and the robot's footprint.
 								This provided a more accurate odometry under noisy conditions, as the robot's position within the map would not change, bypassing the noise.
 								In the third phase, when we incorporated AMCL, we bypassed this transform and published raw odometry data as this transform would cause the robot to move around erroneously. 
@@ -197,7 +197,7 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 middle_manager_manatee.PNG" alt="" style="text-align:center; height:550px; width:auto;">
+								<img src="images/3002 middle_manager_manatee.PNG" alt="" style="text-align:center; height:600px; width:auto;">
 							</div>	
 						</div>
 					</div>

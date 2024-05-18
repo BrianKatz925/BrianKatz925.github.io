@@ -44,15 +44,15 @@
 					<div id="main" style="padding-bottom:25px;">
 						<div class="row">
 							<div class="column">
-							<h1 style="margin-bottom:0px; margin-top:25px;">RBE502: Robot Controls</h1>
+							<h1 style="margin-bottom:0px; margin-top:25px;margin-left: 30px">RBE502: Robot Controls</h1>
 							<p> </p>
 							</div>
 						</div>
 					</div>
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">
-							<h2 style="margin-left:40px;margin-bottom:20px;">Summary</h2>
-							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>
+							<h2 style="margin-bottom:20px;">Summary</h2>
+							<p style= margin-left:40px;margin-right:80px;margin-bottom:20px;>
 								In Robot Controls, the main objective of the final project was to develop a resilient control scheme to enable a quadrotor to track desired trajectories while undergoing external disturbances.
 								This project involved trajectory generation given a list of input coordinates, which were fed into a custom sliding mode control scheme.
 								After generating a symbolic representation of the control inputs into a quadrotor given the dynamics, we developed a simulation using Python and ROS to publish ROS messages to the quadrotor in Gazebo.
@@ -68,16 +68,16 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/quadrotor motion.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+								<img src="images/quadrotor motion.PNG" alt="" style="text-align:center; height:350px; width:auto;">
 							</div>	
 						</div>
 					</div>
 					
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">		
-							<h2 style="margin-left:40px;margin-bottom:20px;">Trajectory Generation</h2>
+							<h2 style="margin-bottom:20px;">Trajectory Generation</h2>
 
-							<p style= margin-left:80px;margin-right:80px;>
+							<p style= margin-left:40px;margin-right:80px;>
 								We first broke down this large problem into a series of sequential steps to determine our control model.
 								The first step was to generate trajectories given a series of desired quadrotor position, velocity, and acceleration coordinates.
 								We created a class which would handle the generation of quintic trajectory polynomial coefficients and the corresponding fifth order equations.
@@ -90,14 +90,14 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/quintic traj.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+								<img src="images/quintic traj.PNG" alt="" style="text-align:center; height:350px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main"style="padding-bottom:0px">
 						<div class="inner">
-							<p style= margin-left:80px;margin-right:80px;>
+							<p style= margin-left:40px;margin-right:80px;>
 							Next, we fed the resulting coefficients into a series of fifth order equations to give us the symbolic position, velocity, and acceleration trajectories the robot would take throughout its movement.
 							We then plotted these symbolic functions using Sympy functions such as lambdify and vectorize, which translated our symbolic equations to a plottable equation. 
 						</div>
@@ -106,17 +106,19 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/quintic equations.PNG" alt="" style="text-align:center; height:100px; width:auto;">
-								<img src="images/desired traj data.PNG" alt="" style="text-align:center; height:500px; width:auto;">
+								<img src="images/quintic equations.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+								<img src="images/desired traj data.PNG" alt="" style="text-align:center; height:550px; width:auto;">
 							
 							</div>	
 						</div>
 					</div>
 
-					<div>	
-						<h2 style="margin-left:40px;margin-bottom:20px;">Slide Mode Control Derivation</h2>
+				
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+						<h2 style="margin-bottom:20px;">Slide Mode Control Derivation</h2>
 
-						<p style= margin-left:80px;margin-right:80px;>
+						<p style= margin-left:40px;margin-right:80px;>
 							The next step was to derive the sliding mode control laws for this system. To do so, we followed these steps:
 						</br>
 						</br>
@@ -139,18 +141,19 @@
 						Since the dynamics were in the form of accelerations, our state variables had to include both position and velocity for the previously named variables.
 						</p>
 					</div>
+					</div>
 
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/dynamics and state variables.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+								<img src="images/dynamics and state variables.PNG" alt="" style="text-align:center; height:450px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main"style="padding-bottom:0px">
 						<div class="inner">
-							<p style= margin-left:80px;margin-right:80px;>
+							<p style= margin-left:40px;margin-right:80px;>
 								Then, using the previously stated methodology, we calculated the symbolic trajectories for each of our state variables.
 								</br>
 								</br>
@@ -159,21 +162,21 @@
 								</br>
 								</br>
 								Next, we put the dynamics equations into control affine form as shown below by separating the dynamics equations into f(x) terms and g(x) terms which are multiplied by u, the set of control inputs.
-								</p>
+							</p>
 						</div>
 					</div>
 
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/control affine.PNG" alt="" style="text-align:center; height:50px; width:auto;">
+								<img src="images/control affine.PNG" alt="" style="text-align:center; height:75px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main"style="padding-bottom:0px">
 						<div class="inner">
-							<p style= margin-left:80px;margin-right:80px;>
+							<p style= margin-left:40px;margin-right:80px;>
 								Then, we defined the surface equations which are used for the "sliding" portion of the sliding mode control. 
 								In the equations below, our goal is to solve for the control inputs given a sliding surface, s, and a set of chosen gains, k and lambda.
 								The gains in this system are crucial towards the stability of the system.
@@ -188,14 +191,14 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/sliding mode control deriv.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+								<img src="images/sliding mode control deriv.PNG" alt="" style="text-align:center; height:350px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main"style="padding-bottom:0px">
 						<div class="inner">
-							<p style= margin-left:80px;margin-right:80px;>
+							<p style= margin-left:40px;margin-right:80px;>
 								Lastly, we solved for the control inputs using the previous sliding mode equations and surface condition.
 								The Ur term in this equation is a robust control term, which will become our control law and satisfy the sliding condition.
 							</p>
@@ -205,14 +208,14 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/control inputs.PNG" alt="" style="text-align:center; height:50px; width:auto;">
+								<img src="images/control inputs.PNG" alt="" style="text-align:center; height:75px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main"style="padding-bottom:0px">
 						<div class="inner">
-							<p style= margin-left:80px;margin-right:80px;>
+							<p style= margin-left:40px;margin-right:80px;>
 								We then substitute the Ur term into our sliding mode condition and add a saturation function to reduce chattering.
 								The phi term in the saturation function defines our boundary layer, along with reducing frequent sign changes, producing smooth control.
 								This results in Ur to be the following. 

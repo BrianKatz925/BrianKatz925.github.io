@@ -44,15 +44,15 @@
 					<div id="main" style="padding-bottom:25px;">
 						<div class="row">
 							<div class="column">
-							<h1 style="margin-bottom:0px; margin-top:25px;">RBE501: Robot Dynamics</h1>
+							<h1 style="margin-bottom:0px; margin-top:25px; margin-left:30px">RBE501: Robot Dynamics</h1>
 							<p> </p>
 							</div>
 						</div>
 					</div>
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">
-							<h2 style="margin-left:40px;margin-bottom:20px;">Summary</h2>
-							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>
+							<h2 style="margin-bottom:20px;">Summary</h2>
+							<p style= margin-left:40px;margin-right:80px;margin-bottom:20px;>
 								The final assignment of Robot Dynamics was the implementation of inverse dynamics control of a three degree of freedom robot arm in MATLAB. 
 								In this simulation, we defined transformation matrices, spatial inertia matrices, and applied inverse kinematics and quintic trajectory generation for robot motion.
 								We included several scenarios, such as the robot falling under its own weight, changing theoretical link moment of inertias, and adding a payload to observe changes in joint torques.
@@ -67,16 +67,16 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/rbe501 robot arm.PNG" alt="" style="text-align:center; height:300px; width:auto;">
-								<img src="images/rbe501 inverse dynamics.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+								<img src="images/rbe501 robot arm.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								<img src="images/rbe501 inverse dynamics.PNG" alt="" style="text-align:center; height:350px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">
-							<h2 style="margin-left:40px;margin-bottom:20px;">Derivation and Simulation</h2>
-							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>
+							<h2 style="margin-bottom:20px;">Derivation and Simulation</h2>
+							<p style= margin-left:40px;margin-right:80px;margin-bottom:20px;>
 								To obtain the homogeneous transformation matrices, I broke up the problem into two components: finding the rotation matrix and the position vector.
 								I used visual inspection to find the rotation matrix, as the coordinate systems for each frame were defined, and utilized the dot product between each axis to define the rotation between each frame.
 								The position vectors were also obtainable from the robot diagram, as the link lengths were defined. 
@@ -88,14 +88,14 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/RpToTrans.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+								<img src="images/RpToTrans.PNG" alt="" style="text-align:center; height:350px; width:auto;">
 								</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">
-							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>
+							<p style= margin-left:40px;margin-right:80px;margin-bottom:20px;>
 								I then calculated the Spacial Inertia matrices, assuming for this portion that no rotatatioal inertia was on the links, letting them fall under their own weight in simulation.
 								In the following solutions, I1,I2,and I3 are the rotational inertia matrices, m1,m2,and m3 are the weights of the links, and G1,G2, and G3 are the spacial inertia matrices.
 							</p>
@@ -105,14 +105,14 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/spacial inertia.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+								<img src="images/spacial inertia.PNG" alt="" style="text-align:center; height:200px; width:auto;">
 								</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">
-							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>
+							<p style= margin-left:40px;margin-right:80px;margin-bottom:20px;>
 								Next, I calculated a set of quintic polynomial trajectories given a set of desired positions, velocities, and accelerations.
 								The quinticpoly function below solves a system of linear equations based on fifth order polynomial equations and the state space variables: position velocity and acceleration.
 								The solution of this system is a set of coefficients, which I input into the fifth order equations to define my position, velocity, and acceleration trajectories.
@@ -123,14 +123,14 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/quintic poly.PNG" alt="" style="text-align:center; height:150px; width:auto;">
+								<img src="images/quintic poly.PNG" alt="" style="text-align:center; height:200px; width:auto;">
 								</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">
-							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>
+							<p style= margin-left:40px;margin-right:80px;margin-bottom:20px;>
 								For the next problem, I was given a set of rotational inertia matrices, and placed them into spatial inertia matrices, following the previous method.
 								Next, I calculated the joint torques required to move the robot along a spiral trajectory in the task space.
 								To generate the list of target poses for the robot, I converted the list of task space coordinates into joint space coodinates using inverse kinematics.
@@ -142,14 +142,14 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/inverse kinematics rbe501.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+								<img src="images/inverse kinematics rbe501.PNG" alt="" style="text-align:center; height:350px; width:auto;">
 								</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">
-							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>
+							<p style= margin-left:40px;margin-right:80px;margin-bottom:20px;>
 								Next, I generated a series of quintic trajectories from point to point, following the method described previously. 
 								To traverse these trajectories, I generated a series of wrenches using inverse dynamics, creating a matrix of joint torques to be applied to form a spiral.
 								To simulate the robot moving from position to position, I used normal dynamics with the solved joint torque wrenches and plotted the robot at the solved joint positions.

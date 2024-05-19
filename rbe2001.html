@@ -36,7 +36,7 @@
 							<li><a href="index.html">Home</a></li>
 							<li><a href="work experience.html">Work Experience</a></li>
 							<li><a href="university projects.html">University Projects</a></li>
-							<li><a href="personal projects.html">Personal Projects</a></li>
+							<!-- <li><a href="personal projects.html">Personal Projects</a></li> -->
 						</ul>
 					</nav>
 
@@ -44,36 +44,69 @@
 					<div id="main" style="padding-bottom:25px;">
 						<div class="row">
 							<div class="column">
-							<h1 style="margin-bottom:0px; margin-top:25px;">Worcester Polytechnic Institute Research</h1>
+							<h1 style="margin-bottom:0px; margin-top:25px; margin-left:30px">RBE2001: Manipulation></h1>
 							<p> </p>
 							</div>
 						</div>
 					</div>
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">
-							<h2 style="margin-left:40px;margin-bottom:20px;">Summary</h2>
-							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>At Worcester Polytechnic Institute, I participated in two research opportunities, exploring the potential of soft robotics (leading to my Major Qualifying Project) and multimaterial 3D printing for robotic mechanisms. </br></p>
-				
-							<h2 style="margin-left:40px;margin-bottom:20px;">Soft Robotics Lab Research Internship</h2>
+							<h2 style="margin-bottom:20px;">Summary</h2>
+							<p style= margin-left:40px;margin-right:80px;margin-bottom:20px;>
+								In the RBE2001 final project, we were tasked with creating a robot that could lift weighted panels onto a two-sided rooftop with multiple angles.
+								The robot navigated autonomously, using a set of indicators on the field that could be read via light sensitive diodes. 
+								Our task was to receive a plate from the docking station, navigate to the first roof and place the plate, then navigate to the second roof, remove the second plate and place it on the docking station.
 
-							<p style= margin-left:80px;margin-right:80px;>
-								During my internship as a Research Assistant at the WPI Soft Robotics Lab, I helped further research on deformable robotics. The robot I worked on, called the SalamanderBot, is mobile robot which features an actively-controlled deformable body. 
-								This body is comprised of a lasercut polyethylene sheet with perforated creates to form a Yoshimura origami pattern and is actuated by cables in three corners, giving it a maximum bending angle of 106 degrees.
-								For the IEEE Conference paper, visit this <a href="https://ieeexplore.ieee.org/document/9196790"target="_blank"style="color:blue">link.</a>
-							</p>
+							</br>
+							</br>
+								To learn more about our project in detail, view our final report <a href="https://drive.google.com/file/d/1swK4c_InY-riYxpBE1lJhyFbpZcCuME2/view?usp=sharing"target="_blank" style="color:blue">here.</a> 
+						</p>
 						</div>
 					</div>
 
-					<div id="main"style="padding-bottom:0px">
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
-							<p style= margin-left:80px;margin-right:80px;>
-							My responsibility as a Research Assistant was to manufacture, assemble, and test several Salamanderbots such that they could be connected to one another, forming a snake-like robot. 
-							I fabricated the polyethylene bodies, learning how to utilize vector editing software and using a laser cutter to cut the polyethylene sheet.
-							To make the housing of the robot, I utilized my personal 3D printer, and optimized prints for higher quality and tight tolerancing. 
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/rbe2001 field.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								<video muted src="images/rbe2001 sped up.mp4" style="text-align:center; height:450px; width:auto;" controls></video>
+							</div>	
+						</div>
+					</div>
+					
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<h2 style="margin-bottom:20px;">Mechanical Design</h2>
+
+							<p style= margin-left:40px;margin-right:80px;>
+								We began designing our robot by performing a linkage synthesis, to determine required joint positions and joint lengths for both angles on the rooftop.
+								Using Solidworks, we sketched three positions of our gripper: one at floor level, one at the lower incline, and one at the higher incline.
+								Next, we drew construction lines between corresponding points in each position and their perpendicular bisector to find the pivot point of each link.
+								With these dimensions and geometric constraints, we determined the link lengths and their mounting positions.
+							</p>
+						</div>
+					</div>
+					
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/2001 linkage synthesis.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">	
+							<p style= margin-left:40px;margin-right:80px;>
+								Now knowing our link lengths, we could begin generating a set of links and begin designing the frame of our robot.
+								We knew the weight of the aluminum plates would be challenging to overcome, requiring a high gear ratio.
+								We decided to integrate involute profiles into our links along with multiple gears in a single part to save space on the robot and reduce shaft torque.
+								We stipulated that a 1:25 gear ratio in two 1:5 stages would generate enough torque to overcome the moment produced by the plate at our link lengths.
+								
 							</br>
 							</br>
-							I also soldered and tested the main PCBs involved in controlling the robot, learning how to efficiently solder through-hole and surface mount components. 
-							After soldering, I flashed the boards with custom firmware, and then tested each actuation motor individually, debugging any errors with an oscilloscope.
+								To verify this, we performed four-bar linkage analysis to identify the output torque of the transmission.
+								We drew three free body diagrams consisting of the entire system, the coupler link, and the follower link.
 							</p>
 						</div>
 					</div>
@@ -81,38 +114,227 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/Salamanderbot body.JPG" alt="" style="text-align:center; height:400px; width:auto;">
-								<img src="images/salamanderbot pcb.JPG" alt="" style="text-align:center; height:400px; width:auto;">
+								<img src="images/2001 gear train design.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+							</br>
+								<img src="images/2001 fbd system.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								<img src="images/2001 fbd coupler.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								<img src="images/2001 fbd follower.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+							
 							</div>	
 						</div>
 					</div>
 
-					<div id="soft robotics" style="padding-bottom:0px;">
-						<div class="inner">
-							<h2 style="margin-left:40px;margin-bottom:20px;">Robotic Materials Group Research</h2>
-							
-							<p style= margin-left:80px;margin-right:80px;>
-								I also performed research on multimaterial 3D printing, performing market studies on currently available technology. 
-								The goal of this research was to find a commerical solution to perform reliable multimaterial 3D printing on rigid and flexible filaments. 
-								I investigated solutions such as the Prusa MMU2S, the Mosaic Palette 3, the Ultimaker S3, and the E3D Toolchanger System.
-
-								</br>
-								</br>
-								I spent the most time with the E3D Toolchanger, as it proved to be the most capable to fuse multiple flexible filaments in a singular layer. 
-								Once we set up the toolchanger, we investigated different mechanical interfaces between filaments and performed tensile testing to fuel research into multimaterial 3D printed soft robots.
-								To learn more about the market study I performed, you can view my final presentation <a href="https://drive.google.com/file/d/1-ZfEjH552Zgoe6NtGXyc9i-XciOWc1cB/view?usp=sharing"target="_blank" style="color:blue">here.</a>
-								</p>
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<p style= margin-left:40px;margin-right:80px;>
+								This was a rather challenging systems of equations to solve by hand, so we used an analytical solver in MathCad by symbolically generating equations and then substituting variables.
+								As shown below, we used static analysis of each link in the x and y direction as well as the moments generated in each free body diagram.
+								The result of these equations was 16.05 in.lb of torque applied at the motor shaft.
+							</p>
 						</div>
 					</div>
 
-					<div id="main" style="text-align:center;padding-top:0px;">
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/toolchanger unedite.jpg" alt="" style="text-align:center; height:400px; width:auto;">
-								<img src="images/multimaterial.jpg" alt="" style="text-align:center; height:400px; width:auto;">
+								<img src="images/2001 mathcad system.PNG" alt="" style="text-align:center; height:450px; width:auto;">
+								<img src="images/2001 mathcad folllower.PNG" alt="" style="text-align:center; height:450px; width:auto;">
+							
 							</div>	
 						</div>
 					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<p style= margin-left:40px;margin-right:80px;>
+							With a 1:25 gear ratio, assuming an efficiency of 90% for each one of the two stages of the transmission, we would net 0.793 in.lb of torque at the motor shaft.
+							The next step was to search the motor datasheet to determine if the provided Pololu motor stall torque was larger than our input torque.
+							We first found the speed in which our motor would rotate while applying this torque by applying the following equation, which applied linear interpolation to the motor's torque and current.
+							From this formula, we found that the motor would need to rotate at 191.3 RPM to provide this magnitude of torque. 
+								
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/2001 motor speed interpolation.PNG" alt="" style="text-align:center; height:100px; width:auto;">
+							</div>	
+						</div>
+					</div>
+					
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<p style= margin-left:40px;margin-right:80px;>
+							Using the motor datasheet and Excel spreadsheet with data values for speed, torque and current draw, we used linear interpolation to find the exact current draw and power output of the motor.
+							We found that the motor would draw 0.38A and output 1.79W of power. 
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/2001 motor interpolator.PNG" alt="" style="text-align:center; height:450px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<p style= margin-left:40px;margin-right:80px;>
+							Next, we calculated the forces on the gear teeth in the transmission using Mathcad and Newton's third law.
+							By inputting the previously calculated torque and the radius of the driving gear, we solved for the tangential and shear forces on the gear teeth, as shown below.
+							With these results, we tuned our 3D printing parameters to increase infill around the teeth such that they can withstand the forces in the system.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/2001 gear train forces.PNG" alt="" style="text-align:center; height:450px; width:auto;">
+								<img src="images/2001 gear tooth analysis.PNG" alt="" style="text-align:center; height:450px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<p style= margin-left:40px;margin-right:80px;>
+							We then analyzed the speeds of the links in the four-bar linkage using Norton Linkage software. 
+							With the link lengths and positions from Solidworks as inputs, we created a model that could output the angular speeds at each joint.
+							This was not used directly in the project, but it could be helpful for understanding when a linkage approaches a toggle point or if there are speed constraints on the system.
+							We found the the speed at the gripper would be 3 rad/sec from the printout section of the software.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/2001 norton linkages.PNG" alt="" style="text-align:center; height:450px; width:auto;">
+								</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<p style= margin-left:40px;margin-right:80px;>
+							After sizing our gears, we used their pitch diameters to calculate the placement of shafts and bearings.
+							Once we located the shafts, we created a bounding box that would act as our side plating. 
+							We then lasercut the side plate out of 1/8" wood and used a combination of flanged bearings and shaft collars to stabilize the gears and shafts.
+							We attached the side plates to our lab basebot using a series of L-brackets on both sides.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/2001 side plate.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								<img src="images/2001 side plate assembly.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<p style= margin-left:40px;margin-right:80px;>
+							Lastly, we slightly modified a lab-provided gripper to match the gripper dimensions we calculated along with modifications to clearance holes to add lubricated bushings.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/2001 gripper.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<h2 style="margin-bottom:20px;">Electronics</h2>
+
+							<p style= margin-left:40px;margin-right:80px;>
+								For this project, we selected a series of H-bridge motor drivers and level shifters to drive our motors.
+								We selected an ESP-32 as our microcontroller for this project for its fast processing time and WiFi communication capability.
+								However, the ESP-32 is compatible with 3.3V, while the H-bridges and Pololu motors feature 5V logic. 
+								Therefore, we used 3.3V to 5V level shifters, to avoid damaging the ESP32 internals while interfacing with the higher voltage motors.
+								We also used a line following sensor array, consisting of four photodiodes to detect changes in light, and more specifically, the black lines on the field.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/2001 motor driver wiring.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								<img src="images/2001 esp32 wiring.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								<img src="images/2001 level shifter wiring.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<h2 style="margin-bottom:20px;">Software</h2>
+
+							<p style= margin-left:40px;margin-right:80px;>
+								In this final project, we required autonomous precision control to achieve the two roof incline angles.
+								We employed PID control, using position as error onto our linkage crank motor to derive a closed-loop control scheme for our linkage. 
+								This allowed us to reach desired setpoints with minimal error with extensive tuning of coefficients.
+								Through testing, we learned that our motor had a significant deadband due to internal friction.
+								By using provided PID control tuning software, we found the minimum PWM duty cycle values (in both directions) before the motor begins to rotate in our transmission.
+								To ensure the PID control does not supply a motor command within this deadband, we clamped the values on both ends, sending the motor to stop if the linkage achieved the desired position.
+								We calculated our PID setpoints experimentally, increasing in small increments until the plate being held by the gripper matched the positions we derived during our linkage synthesis.
+
+							</br>
+						</br>
+								To command the robot around the field, we implemented several functions such as a line following control loop, a turning function, and a u-turn function.
+								We interpreted line follower photodiode data with a Serial printout of the sensor connected to the ESP32.
+								We hovered the sensor over a black line and the bare table, receiving a threshold of values in different light settings to differentiate dark and light spots.
+								Our control logic was defined as a differential, in which we would increase the speed of one motor if only one of two photodiodes (mounted next to one another) was reading a dark region while driving straight.
+								We also implemented control for two outer sensors stating that if all sensors read a dark region, we were approaching a perpendicular line and had the option to turn 90 degrees to remain on a dark line.
+								For turning and u-turns, we found it was best to turn when the virtual turning center of the robot was directly aligned with our destination line. 
+								Therefore, we would dead reckon approximately 3 inches foward before executing a 90 or 180 degree turn, such that our line follower sensor would directly intersect our new line of travel.
+
+					</br>
+				</br>
+							We packaged these functions in the form of a finite state machine, which allowed us to keep track of our next objective.
+							As there were multiple perpendicular lines on the field as shown below, we kept track of how many perpendicular lines we crossed using the line follower to understand our relative position on the field.
+							Our state machine consisted of seven states:
+							</br>
+							</br>
+							1. collectBase:  collected the plate from the dropoff station
+						</br>
+							2. gotoDropOffLine: brought the robot to the nearest line to drop off the plate
+						</br>
+							3. dropOff: rotated our linkage motor until we reached our lower position setpoint and opened the gripper
+						</br>
+							4. gotoPickupLine: moved the robot to the other plate location on the same side of the rooftop
+						</br>
+							5. pickUp: rotated our linkage motor until we reached the highest position setpoint, opened the gripper, and moved forward to receive the plate
+						</br>
+							6. dropOffBase: navigated back to the dropoff station and placed the plate down to the lowest position setpoint
+						</br>
+							7. longTravel: move underneath the roof system to reach the other rooftop angles
+						</br>
+					</br>
+
+							For the challenge, we traversed through states 1 through 7 linearly, and then repeated states 1 through 6 once we reached the other side of the roof.
+								
+							</p>
+						</div>
+					</div>
+
+
+					
+
+					
 
 
 		<!-- Scripts -->

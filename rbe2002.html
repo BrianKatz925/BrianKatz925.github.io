@@ -44,36 +44,67 @@
 					<div id="main" style="padding-bottom:25px;">
 						<div class="row">
 							<div class="column">
-							<h1 style="margin-bottom:0px; margin-top:25px;">Worcester Polytechnic Institute Research</h1>
+							<h1 style="margin-bottom:0px; margin-top:25px; margin-left:30px">RBE2002: Sensing</h1>
 							<p> </p>
 							</div>
 						</div>
 					</div>
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">
-							<h2 style="margin-left:40px;margin-bottom:20px;">Summary</h2>
-							<p style= margin-left:80px;margin-right:80px;margin-bottom:20px;>At Worcester Polytechnic Institute, I participated in two research opportunities, exploring the potential of soft robotics (leading to my Major Qualifying Project) and multimaterial 3D printing for robotic mechanisms. </br></p>
-				
-							<h2 style="margin-left:40px;margin-bottom:20px;">Soft Robotics Lab Research Internship</h2>
-
-							<p style= margin-left:80px;margin-right:80px;>
-								During my internship as a Research Assistant at the WPI Soft Robotics Lab, I helped further research on deformable robotics. The robot I worked on, called the SalamanderBot, is mobile robot which features an actively-controlled deformable body. 
-								This body is comprised of a lasercut polyethylene sheet with perforated creates to form a Yoshimura origami pattern and is actuated by cables in three corners, giving it a maximum bending angle of 106 degrees.
-								For the IEEE Conference paper, visit this <a href="https://ieeexplore.ieee.org/document/9196790"target="_blank"style="color:blue">link.</a>
-							</p>
+							<h2 style="margin-bottom:20px;">Summary</h2>
+							<p style= margin-left:40px;margin-right:80px;margin-bottom:20px;>
+								In the RBE2002 final project, we autonomously navigated around a field arranged like a grid of streets and the location of an IR beacon flashing at 1Khz within a randomly selected building.
+								We then deployed a means of escape and navigate back to the starting position. 
+								The entire challenge had a time limit of 5 minutes, with certain time penalties for colliding with buildings. 
+								To create the robot, we built on top of a BaseBot given at the beginning of the class, and applied a series of sensors to sense the locations of buildings, know our global position, and find the IR beacon.
+							</br>
+							</br>
+								To learn more about our project in detail, view our final report <a href="https://drive.google.com/file/d/1kB8SwDMxVtzhZMmch38zokcD-cJYp5J-/view?usp=sharing"target="_blank" style="color:blue">here.</a> 
+						</p>
 						</div>
 					</div>
 
-					<div id="main"style="padding-bottom:0px">
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
-							<p style= margin-left:80px;margin-right:80px;>
-							My responsibility as a Research Assistant was to manufacture, assemble, and test several Salamanderbots such that they could be connected to one another, forming a snake-like robot. 
-							I fabricated the polyethylene bodies, learning how to utilize vector editing software and using a laser cutter to cut the polyethylene sheet.
-							To make the housing of the robot, I utilized my personal 3D printer, and optimized prints for higher quality and tight tolerancing. 
-							</br>
-							</br>
-							I also soldered and tested the main PCBs involved in controlling the robot, learning how to efficiently solder through-hole and surface mount components. 
-							After soldering, I flashed the boards with custom firmware, and then tested each actuation motor individually, debugging any errors with an oscilloscope.
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<video src="images/RBE2002 sped up.mp4" style="text-align:center; height:450px; width:auto;" controls></video>
+							</div>	
+						</div>
+					</div>
+					
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<h2 style="margin-bottom:20px;">Mechanical Design</h2>
+
+							<p style= margin-left:40px;margin-right:80px;>
+								At the beginning of the class, we were given a BaseBot drivetrain, which features two drive motors and a caster wheel to aid turning in place.
+								This system was very simplistic, which allowed us to reduce time spent on tuning PID coefficients of only two motors, and focus our attention on the sensing and navigation aspects of the project.
+								To mount our sensors and deployment mechanism, we built directly on top of the BaseBot mounting plate.
+								We featured a rotating IR receiver and ultrasonic sensor mount, actuated by a servo motor along with a deployment mechanism (in the shape of a ladder) mounted on a rear servo.
+								Beneath the robot, we featured another ultrasonic sensor to aid in proximity detection on the field.
+							</p>
+						</div>
+					</div>
+					
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/RBE2002 design.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<h2 style="margin-bottom:20px;">Sensing</h2>
+
+							<p style= margin-left:40px;margin-right:80px;>
+								As the field was in the form of a grid system, we needed to accurately turn in intervals of 90 degrees and keep track of our position and heading. 
+								To do so, we used a combination of two sensors: an Inertial Measurement Unit (IMU) and our motor encoders.
+								By creating a complementary filter and weighing the results of each sensor against eachother, we could prioritize the reading of one sensor while providing secondary information with another.
+								We experimented heavily with this, and decided on a 99% IMU to 1% encoder ratio, finding that any more interference from the encoders would cause the robot to veer off course and any more IMU information would cause drift over time.
+								We then applied a P controller, feeding in a desired heading value and applying the calculated effort towards controlling the PWM of the motors.
 							</p>
 						</div>
 					</div>
@@ -81,38 +112,180 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/Salamanderbot body.JPG" alt="" style="text-align:center; height:400px; width:auto;">
-								<img src="images/salamanderbot pcb.JPG" alt="" style="text-align:center; height:400px; width:auto;">
+								<img src="images/2002 complementary filter and heading code.PNG" alt="" style="text-align:center; height:75px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
-					<div id="soft robotics" style="padding-bottom:0px;">
-						<div class="inner">
-							<h2 style="margin-left:40px;margin-bottom:20px;">Robotic Materials Group Research</h2>
-							
-							<p style= margin-left:80px;margin-right:80px;>
-								I also performed research on multimaterial 3D printing, performing market studies on currently available technology. 
-								The goal of this research was to find a commerical solution to perform reliable multimaterial 3D printing on rigid and flexible filaments. 
-								I investigated solutions such as the Prusa MMU2S, the Mosaic Palette 3, the Ultimaker S3, and the E3D Toolchanger System.
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">	
 
-								</br>
-								</br>
-								I spent the most time with the E3D Toolchanger, as it proved to be the most capable to fuse multiple flexible filaments in a singular layer. 
-								Once we set up the toolchanger, we investigated different mechanical interfaces between filaments and performed tensile testing to fuel research into multimaterial 3D printed soft robots.
-								To learn more about the market study I performed, you can view my final presentation <a href="https://drive.google.com/file/d/1-ZfEjH552Zgoe6NtGXyc9i-XciOWc1cB/view?usp=sharing"target="_blank" style="color:blue">here.</a>
+							<p style= margin-left:40px;margin-right:80px;>
+								To find the locations of the randomly placed buildings in the 5x5 grid and avoid collisions, we selected HR SC04 ultrasonic sensors due to their consistency and limited deadband.
+								To interpret incoming ultrasonic data as a confirmed building location, we had to represent each building location as a predefined range of values. 
+								We found that a single ping caused minor inconsistencies, which could cause us to misinterpret distance, especially at long ranges.
+								Therefore, we took an average reading over a small period of time. 
+							</br>
+							</br>
+
+								To locate the flashing 1kHz IR beacon, we utilized an IR detector. However, decoy beacons were placed flashing at different frequencies, so we used a bandpass filter to differentiate the target beacon.
+								We decided the best way to react to detecting the beacon was to stop all current motion using an interrupt service routine (ISR) and respond before continuing.
+								We selected a Schmitt trigger to provide a quick signal to our microcontroller upon detection of the beacon.
+								However, this required another circuit called a peak detector, which would hold the amplitude from our band pass filter, creating a three-stage circuit.
+
+							</br>
+							</br>
+
+								Following a circuit example in a Practical Electronics textbook, we selected a series of resistors and capacitors to form a cascading low-pass and high-pass filter with an op-amp creating the following circuit.
+								This resulted in a center frequency of 954Hz with a bandwidth of 386Hz. 
+								
+							</p>
+						</div>
+					</div>
+
+					
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/2002 bandpass filter.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+								<img src="images/2002 bandpass calcs.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+							
+							</div>	
+						</div>
+					</div>
+					
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">	
+
+							<p style= margin-left:40px;margin-right:80px;>
+								The peak detector was a much simpler circuit to design. 
+								The circuit consists of a diode and a capacitor, and holds the maximum received input value as long as the capacitor is not fully charged.
+								We tested 1uF, 10uF, and 100 uF capacitors and found that larger capacitors experienced longer charging times, potentially missing the beacon.
+								To mitigate this, we also added a resistor in parallel to help the capacitor discharge over time and found that smaller resistors reduced the voltage output of the circuit but increased the discharge time.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/2002 peak detector.PNG" alt="" style="text-align:center; height:250px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">	
+
+							<p style= margin-left:40px;margin-right:80px;>
+								The final component in the IR detection circuit was the Schmitt trigger. 
+								We utilized an inverting Schmitt trigger to output a constant voltage upon seeing the IR emitter and have the circuit run active low, making debugging easier.
+								We found that the Schmitt trigger threshold needed to be very low, which allowed us to detect the IR beacon further away.
+								Therefore, through experimental tuning, we settled on a trigger voltage range of V+ = 200mV and V-=97mV.
 								</p>
 						</div>
 					</div>
 
-					<div id="main" style="text-align:center;padding-top:0px;">
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/toolchanger unedite.jpg" alt="" style="text-align:center; height:400px; width:auto;">
-								<img src="images/multimaterial.jpg" alt="" style="text-align:center; height:400px; width:auto;">
+								<img src="images/2002 schmitt trigger.PNG" alt="" style="text-align:center; height:300px; width:auto;">
+								<img src="images/2002 schmitt trigger calcs.PNG" alt="" style="text-align:center; height:250px; width:auto;">
+							
 							</div>	
 						</div>
 					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<h2 style="margin-bottom:20px;">Software</h2>
+
+							<p style= margin-left:40px;margin-right:80px;>
+								We split up the challenge into two components: the scanning phase and the searching phase.
+								We created three state machines to govern these phases, one for the scanning, one for the searching, and one to cover switching between phases for demonstration.
+								This allowed us to create many non-blocking instances of code, and run tasks in parallel such as driving and searching.
+
+							</br>
+							</br>	
+								The outer state machine acted a core, applying the logical progression for solving the challenge.
+								We started in the running phase, where the start button was pressed and the program began running.
+								Then, we instantly transitioned to our scanning phase, which would complete once we reached the position (5,0) on the grid (shown below). 
+								The searching phase instantly began, and ran the path finding algorithm until either the beacon was found or all sides of all known buildings were searched.
+								If we found the beacon, we would play a tune on a piezzo buzzer and return home, and if we did not find the beacon, we would simply return home.
+
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/2002 grid.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+							</br>
+								<img src="images/rbe2002 state machine students robot.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+							
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<p style= margin-left:40px;margin-right:80px;>
+								In the scanning phase, we drove across two sides of the perimeter of the field, which allowed us to scan down each row of the grid.
+								We used the upper ultrasonic sensor for scanning on the first side, identifying as many buildings as we could. 
+								Before we began scanning on the second side, we made the assumption that all spaces behind the buildings we scanned were also buildings, and we would correct that by scanning on the second side.
+								This was valid in the example that buildings were blocking one another, as the rear corner could not be scanned by this procedure.
+
+							</br>
+							</br>
+
+								The state machine to govern this sequence of events was very simple. 
+								We began by driving forward until we reached a row position (preset to a certain number of encoder counts by experimentation).
+								Then, if we were in a row that could contain buildings in it, switch to the Ultrasonic Calc state and ping the ultrasonic.
+								If we received a reasonable reading, then switch to the Scanning Building state and determine where in the grid the building lies.
+								If we reached the end of the map (i.e. position (5,0)), switch to the searching state machine.
+								Otherwise, add the building position previously discovered to our 5x5 map array represented as an 'X.'
+								Once the map addition was complete, we could return to driving and repeat the cycle.	
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/rbe2002 state machine scanning.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+							</div>	
+						</div>
+					</div>
+				
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<p style= margin-left:40px;margin-right:80px;>
+								Finally, in the searching phase, we needed to deterine the quickest way to traverse the field while searching all sides of known buildings.
+								We knew that buildings in the middle of the field needed to be searched, while buildings on the edge only had three sides to search.
+								We employed a heuristic path-planning algorithm that would count the distance in rows that it would take to arrive at one of four sides of a known building and prioritize the closest buildings first.
+						
+							</br>
+							</br>
+								The state machine for this phase started with the drive to row state, which would determine the closest row containing a building.
+								The search row state acts as a buffer state, moving automatically to the Orient state to continue searching or back to the Drive to Row state if the robot needed to drive to another building.
+								The orient state is only activated if the turret containing the IR detection circuit is facing away from a building, in which case the robot would turn in place until it faced the correct side. 
+								Next, the state machine enters the Look for Robin state and Turn the Corner states, where the robot would position the IR detector in eligible areas and navigate around all possible sides of a building.
+								If the beacon was found, the robot exited this state machine and played the piezzo sequence according to the core state machine.
+								Otherwise, the state returned back to the Drive to Row state to move to a different row.
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/rbe2002 state machine searching.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+				
 
 
 		<!-- Scripts -->

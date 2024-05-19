@@ -56,6 +56,7 @@
 								In the final lab of RBE3001, we developed a pick-and-place system by combining principles of computer vision and robot arm control.
 								By using an external USB camera pointed at our workspace, we were able to perform  object detection, localization, and recognition on colored objects.
 								Our robot, by the end of this lab, selected objects and commanded the robot to move them into predefined quadrants based on their color.
+								Through the transformation of coordinates from the joint space, the work space, and the image space, we could effectively command the robot to any given position and understand its movement in all three coordinate systems.
 								
 							</br>
 							</br>
@@ -74,15 +75,13 @@
 					
 					<div id="main" style="padding-bottom:0px">
 						<div class="inner">		
-							<h2 style="margin-bottom:20px;">Node Organization</h2>
+							<h2 style="margin-bottom:20px;">Project Organization</h2>
 
 							<p style= margin-left:40px;margin-right:80px;>
-								For phase one, where we navigated the map, we needed to include several off-the-shelf nodes along with nodes we created in previous labs.
-								As shown below in the node diagram, our highest level node was the middle_manager_manatee node, which acted as our core.
-								This node took in the most information from the map_processor, to understand map completion for phase switching.
-								The lowest level nodes, called alligator_navigator and path_planner_platypus, provided the navigation commands for the TurtleBot.
-								The map_processor node  governed the functions behind the dynamic and static map generation.
-								Octopus_odom provided a real-time accurate odometry solution within a noisy map using a frame transform.
+								This lab consisted of several components to make robot motion and object detection possible. 
+								The robot included three motors, a gripper servo, an external 7.5V power supply and an ItsyBitsy microcontroller to control all acutators.
+								For the peripherals, we connected a USB camera and a ring light to record and illuminate the task space. 
+								To control the robot and interpret incoming data, we used MATLAB and the MATLAB image processing toolbox.
 							</p>
 						</div>
 					</div>
@@ -90,19 +89,19 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 phase 1.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								<img src="images/3001 system diagram.PNG" alt="" style="text-align:center; height:350px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
-						<div class="inner">	
+						<div class="inner">		
 							<p style= margin-left:40px;margin-right:80px;>
-								As phase two was navigating back to the start node and saving the map, it retained the same node diagram. 
-								In phase three, we no longer needed to process a map, and the map_processor node was eliminated. 
-								The middle_manager_manatee was now fed a goal from RViz (an interactive map viewer) and published a set of coordinates to the alligator_navigator.
-								In this phase, we included amcl, the built-in localization node, and were feeding the pose and surrounding scan data into octopus_odom.
-								This formed the Montecarlo Localization and verified the robot's position on the scanned map.
+								To control the flow of data transmission, we developed a series of classes as shown below.
+								Camera.m handled all data incoming to the camera, by performing extrinsic calibration and image modification, outputting a series of coordinates in the task space to our robot.
+								Interpolator.m received this data along with the current robot position from the Robot.m class, and created a series of cubic or quintic trajectories, which the Robot.m class translated as a sequence of setpoints.
+								The Robot.m class would then receive this data and perform forward or inverse kinematics between the robot's current position and desired position, sending PWM commands to the motors to move accordingly.
+								The final class, Model.m, would give us a 3D plot of the robot moving in the task space in real time y taking in current joint positions from the Robot.m class. 
 							</p>
 						</div>
 					</div>
@@ -110,81 +109,38 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 phase 2.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								<img src="images/rbe3001 class outline.PNG" alt="" style="text-align:center; height:450px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
 					<div id="main" style="padding-bottom:0px">
-						<div class="inner">	
-							<h2 style="margin-bottom:20px;">Node Definitions</h2>
+						<div class="inner">		
+							<h2 style="margin-bottom:20px;">Robot Control Calculations</h2>
+
 							<p style= margin-left:40px;margin-right:80px;>
-								The alligator_navigator node functioned as a locomotion node, taking in individual points from the core node and navigating to them.
-								To create a smooth form of driving, we created the go_to_two function, which used simultaneous proportional controllers on the robot's position and rotation error, allowing the robot to curve into paths..
-								This go_to_two function was called during a service proxy to path_planner_platypus, and would pop a coordinate from a list.
-							</p>
-						</div>
-					</div>
-
-					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
-						<div class="inner">
-							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 alligator_navigator.PNG" alt="" style="text-align:center; height:450px; width:auto;">
-							</div>	
-						</div>
-					</div>
-
-					<div id="main" style="padding-bottom:0px">
-						<div class="inner">	
-							<p style= margin-left:40px;margin-right:80px;>
-								Path_planner_platypus used algorithms such as A* to calculate optimal paths between a given start and end position.
-								After receiving the path, we called the smooth_path function, which brought corners closer towards a local centroid by an experimental smoothing constant, alpha.
-								This node took in current map data, calculating our C-Space and padded any walls using the radius of the robot (to avoid collision) and provided this data as a service call to alligator_navigator.
-							</p>
-						</div>
-					</div>
-
-					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
-						<div class="inner">
-							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 path_planner_platypus.PNG" alt="" style="text-align:center; height:450px; width:auto;">
-							</div>	
-						</div>
-					</div>
-
-					<div id="main" style="padding-bottom:0px">
-						<div class="inner">	
-							<p style= margin-left:40px;margin-right:80px;>
-								Map_processor was the node that converted our raw map data into frontier data that can be used by other nodes. 
-								Using the find_frontiers function, we applied edge detection to find all unknown spaces neighboring already explored free space cells.
-								To determine which frontier to explore, we created a heuristic cost, by calculating the distance to each frontier and the size of the frontier list to prioritize frontiers that are closer and larger in size.
-								Once we found a frontier, we found the median point (presented as the center of the frontier in the map) and published a message to our path planner.
-							</p>
-						</div>
-					</div>
-
-					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
-						<div class="inner">
-							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 map_processor.PNG" alt="" style="text-align:center; height:500px; width:auto;">
-							</div>	
-						</div>
-					</div>
-
-					<div id="main" style="padding-bottom:0px">
-						<div class="inner">	
-							<p style= margin-left:40px;margin-right:80px;>
-								Octopus_odom, as mentioned previously, took in the robot's current position from the odometry and tf topics, and performed a transform beteween the map and the robot's footprint.
-								This provided a more accurate odometry under noisy conditions, as the robot's position within the map would not change, bypassing the noise.
-								In the third phase, when we incorporated AMCL, we bypassed this transform and published raw odometry data as this transform would cause the robot to move around erroneously. 
+								We implemented forward kinematics by creating a function called fk3001. 
+								This function converted input joint angles from the current encoder positions into end effector positions by applying post-multiplication on a series of transformation matrices respresenting Denavit–Hartenberg parameters.
+								We derived the D-H parameters of the robot using its static geometry, and assigning reference frames to each of the joints.
+								This allowed us to translate between the joint space (robot coordinate systems) to the task space (world coordinate systems).
 							</br>
 							</br>
-								Lastly, middle_manager_manatee set the integer phase of the program, starting and ending launch files. 
-								We started with phase zero, which set up all subscriber callbacks and then launched the phase_one launch file.
-								This started up our map_processor and GMapping nodes to begin locomotion and frontier detection. 
-								Map_processor published the handle_phase topic, which the middle_manager_manatee node was subscribed.
-								Once the map was complete, the map_processor published an integer, and the node published the initial location of the robot and saved the map on completion.
-								Lastly, the node closed all files and relaunched the map using the previously saved map, AMCL, and a custom RViz configuration which allowed us to place points on the map to navigate. 
+								We also generated an inverse kinematics model using a geometric approach, solving for the robot's joint angles given a known end-effector position. 
+								We chose the geometric approach over a typical algebraic approach, as the result yielded by the algebraic approach was more challenging to derive.
+								In the geometric approach, we illustrated the robot in 3D space, translated the illustration into 2D space for simplicity and then applied the Law of Cosines to solve for all three joint angles.
+								By this approach, we received multiple results, but we eliminated all negative results to avoid collision of the robot.
+							</br>
+							</br>
+								To generate our cubic and quintic trajectories, we input the desired initial and final positions, velocities, and accelerations to solve a systems of linear equations.
+								The solution of this system revealed the coefficients to fifth order equations for the position, velocity, and acceleration trajectory between two discrete points.
+							</br>
+							</br>
+								Next, we calculated the robot arm's 6x3 Jacobian matrix, which was useful in generating end effector linear and angular velocities as well as the joint torques of the robot under load.
+								In the jacob3001 function, we input a 3x1 vector of joint angles, and used a cross product to determine the Jp and Jo matrices which, when combined, form the Jacobian. 
+								Once we derived the symbolic version of our robot's Jacobian, we multiplied its transverse by a 3x1 vector of end-effector forces to calculate the joint torques, as shown below.
+							</br>
+							</br>
+								These functions formed the basis for translation between coordinate systems, safety limits, and robot positioning that allowed us to direct the robot between any space within its working region.
 							</p>
 						</div>
 					</div>
@@ -192,11 +148,76 @@
 					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
 						<div class="inner">
 							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
-								<img src="images/3002 middle_manager_manatee.PNG" alt="" style="text-align:center; height:600px; width:auto;">
+								<img src="images/3001 joint torque hand calcs.PNG" alt="" style="text-align:center; height:400px; width:auto;">
 							</div>	
 						</div>
 					</div>
 
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<h2 style="margin-bottom:20px;">Camera Calibration and Image Manipulation</h2>
+							<p style= margin-left:40px;margin-right:80px;>
+								The first step in creating reliable camera was to use a consistent setup and calibrate the camera. 
+								We applied an external light source in the form of a ring light to shine over the task space and provide our USB camera, mounted at the end of an adjustable pole, visibility over the entire space.
+
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/rbe3001 camera setup.PNG" alt="" style="text-align:center; height:400px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<p style= margin-left:40px;margin-right:80px;>
+								Each time we decided to move the camera, we performed an intrinsic calibration using the Matlab Camera Calibration App.
+								To make this calibration easier, our task space featured a printed checkerboard pattern, which allowed the app to determine relative coordinates from the lens to the pattern.
+								To translate this relative coordinate system into an absolute coordinate system, we fed the app the approximate size of each checkerboard square, which was 25mm. 
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/3001 calibration.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+							</div>	
+						</div>
+					</div>
+
+					<div id="main" style="padding-bottom:0px">
+						<div class="inner">		
+							<p style= margin-left:40px;margin-right:80px;>
+								Extrinsic calibration was more challenging, as we needed to generate the location of the robot's base frame with respect to the origin of the task space generated by the calibration.
+								Using a transformation matrix, we transformed the origin in the task space to the robot base coordinate system, relating our robot to the camera coordinates.
+								This formed the basis of our calcPositions function, which translated pixel positions generated from the pointstoWorld function into task space coordinates.
+							</br>
+							</br>
+								We detected objects in the task space with a function called detect, which returned the centroids of all visible objects.
+								We performed image segmentation, by converting a raw image into HSV colors, and applying a grayscale mask to turn the image to black and white. 
+								Then, we eroded the image using a sphere as our basis and generated blobs to create bounding boxes around all detected objects, where we found our centroids. 
+								As seen from the image below, the quality of the image taken was important, as small white spots not representative of objects appeared, and could culminate in additional bounding boxes.
+								For the sake of this project, we ignored detected objects of small size to avoid the robot picking up a "ghost" ball.
+								To differentiate the colors of objects, we input a list of all pixels inside the previously generated bounding boxes and calculated the average hue value, which we correlated experimentally to a color. 
+							</p>
+						</div>
+					</div>
+
+					<div id="main" style="text-align:center;padding-bottom:20px;padding-top:0px;">
+						<div class="inner">
+							<div class="img-container" style="padding-top:0px"> <!-- Block parent element -->
+								<img src="images/3001 eroded image.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+								<img src="images/3001 object detection.PNG" alt="" style="text-align:center; height:350px; width:auto;">
+							
+							</div>	
+						</div>
+					</div>
+					
 				
 
 				
